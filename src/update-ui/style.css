@@ -11,9 +11,9 @@
   --text: #f0f0f5;
   --text-dim: #9090a8;
   --text-faint: #5a5a72;
-  --accent: #a855f7;
+  --accent: #e63946;
   --accent-2: #f59e0b;
-  --accent-soft: rgba(168, 85, 247, 0.16);
+  --accent-soft: rgba(230, 57, 70, 0.16);
   --danger: #ef4444;
   --success: #22c55e;
 }
@@ -93,7 +93,7 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
   margin: 0 auto 12px;
   background: var(--accent-soft);
   color: var(--accent);
-  box-shadow: 0 0 30px rgba(168,85,247,0.35);
+  box-shadow: 0 0 30px rgba(230,57,70,0.35);
 }
 .icon-bubble.ok {
   background: rgba(34,197,94,0.16);
@@ -138,7 +138,7 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
   background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
   border-radius: 4px;
   transition: width 0.18s ease;
-  box-shadow: 0 0 12px rgba(168,85,247,0.55);
+  box-shadow: 0 0 12px rgba(230,57,70,0.55);
 }
 .progress-detail {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
@@ -169,12 +169,12 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
 }
 .btn:active { transform: scale(0.97); }
 .btn.primary {
-  background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #b91c1c 100%);
   color: #fff;
-  box-shadow: 0 0 16px rgba(168,85,247,0.32), inset 0 1px 0 rgba(255,255,255,0.18);
+  box-shadow: 0 0 16px rgba(230,57,70,0.32), inset 0 1px 0 rgba(255,255,255,0.18);
 }
 .btn.primary:hover {
-  box-shadow: 0 0 22px rgba(168,85,247,0.5), inset 0 1px 0 rgba(255,255,255,0.22);
+  box-shadow: 0 0 22px rgba(230,57,70,0.5), inset 0 1px 0 rgba(255,255,255,0.22);
 }
 .btn.primary:disabled {
   opacity: 0.5; cursor: not-allowed; box-shadow: none;

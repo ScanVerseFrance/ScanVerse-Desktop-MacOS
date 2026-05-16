@@ -128,7 +128,7 @@ function injectTitleBar() {
       color: #f0f0f5;
       flex-shrink: 0;
     }
-    #sv-titlebar .sv-tb-logo .accent { color: #a855f7; }
+    #sv-titlebar .sv-tb-logo .accent { color: #e63946; }
 
     #sv-titlebar .sv-tb-divider {
       width: 1px;

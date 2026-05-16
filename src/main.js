@@ -452,8 +452,8 @@ function createWindow() {
       html,body{margin:0;height:100%;background:#0a0a0f;color:#f0f0f5;font-family:'Syne',system-ui,sans-serif}
       .wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:24px}
       .logo{display:flex;align-items:center;gap:6px;font-weight:800;font-size:32px;letter-spacing:-1px}
-      .logo .v{color:#a855f7}
-      .spinner{width:32px;height:32px;border:3px solid rgba(168,85,247,0.2);border-top-color:#a855f7;border-radius:50%;animation:spin 0.8s linear infinite}
+      .logo .v{color:#e63946}
+      .spinner{width:32px;height:32px;border:3px solid rgba(230,57,70,0.2);border-top-color:#e63946;border-radius:50%;animation:spin 0.8s linear infinite}
       .label{color:#5a5a72;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-family:'JetBrains Mono',ui-monospace,monospace}
       @keyframes spin{to{transform:rotate(360deg)}}
     </style></head>
@@ -473,15 +473,15 @@ function createWindow() {
         html,body{margin:0;height:100%;background:#0a0a0f;color:#f0f0f5;font-family:'Syne',system-ui,sans-serif}
         .wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:18px;padding:24px;text-align:center;box-sizing:border-box}
         .logo{display:flex;align-items:center;gap:6px;font-weight:800;font-size:24px;letter-spacing:-1px;opacity:0.5;margin-bottom:8px}
-        .logo .v{color:#a855f7}
+        .logo .v{color:#e63946}
         h1{margin:0;font-size:24px;font-weight:800;letter-spacing:-0.5px}
         p{margin:0;color:#9090a8;font-size:14px;max-width:480px;line-height:1.5}
-        code{background:#18181f;padding:2px 8px;border-radius:4px;font-size:12px;color:#c4b5fd;font-family:'JetBrains Mono',ui-monospace,monospace}
+        code{background:#18181f;padding:2px 8px;border-radius:4px;font-size:12px;color:#fca5a5;font-family:'JetBrains Mono',ui-monospace,monospace}
         .err{background:#18181f;padding:8px 12px;border-radius:8px;font-size:12px;color:#ef4444;font-family:'JetBrains Mono',ui-monospace,monospace;max-width:560px;overflow-wrap:break-word;border:1px solid rgba(239,68,68,0.2)}
         .actions{display:flex;gap:12px;margin-top:8px}
         button{padding:10px 18px;border-radius:10px;border:none;font-weight:800;font-size:13px;cursor:pointer;transition:transform .1s;font-family:'Syne',system-ui,sans-serif;letter-spacing:0.02em;display:inline-flex;align-items:center;gap:7px}
         button:active{transform:scale(0.97)}
-        .primary{background:#a855f7;color:#fff}
+        .primary{background:#e63946;color:#fff}
         .secondary{background:#18181f;color:#f0f0f5;border:1px solid rgba(255,255,255,0.1)}
         .discord{background:#5865f2;color:#fff}
         .discord-prompt{margin-top:4px;color:#9090a8;font-size:13px}
