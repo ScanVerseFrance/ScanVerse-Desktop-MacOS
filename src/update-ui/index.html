@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>ScanVerse — Mise à jour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Custom titlebar (frameless window). Drag handle = whole bar. -->
+  <header class="titlebar">
+    <div class="titlebar-brand">
+      <span class="brand-name">Scan<span class="accent">Verse</span></span>
+      <span class="titlebar-sub">— Mise à jour</span>
+    </div>
+    <button class="tb-close" id="close-btn" aria-label="Fermer" title="Fermer">
+      <svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <main class="content">
+
+    <!-- ── State 1: prompt ───────────────────────────────────────────── -->
+    <section class="state active" data-state="prompt">
+      <div class="icon-bubble">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+      </div>
+      <h1 class="title">Une mise à jour est disponible</h1>
+      <p class="lede">
+        ScanVerse <strong id="latest-ver">—</strong> est sortie. Tu utilises actuellement la version <span id="current-ver">—</span>.
+      </p>
+      <p class="muted small" id="size-line"></p>
+      <footer class="actions">
+        <button class="btn ghost" id="later-btn">Plus tard</button>
+        <button class="btn primary" id="download-btn">Télécharger et installer</button>
+      </footer>
+    </section>
+
+    <!-- ── State 2: downloading ──────────────────────────────────────── -->
+    <section class="state" data-state="downloading">
+      <h1 class="title">Téléchargement en cours</h1>
+      <p class="lede">
+        ScanVerse <strong id="dl-ver">—</strong>
+      </p>
+      <div class="progress-shell">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <p class="progress-detail" id="progress-detail">0 Mo / 0 Mo</p>
+      <p class="muted small">Encore quelques secondes…</p>
+      <footer class="actions">
+        <button class="btn ghost" id="cancel-btn">Annuler</button>
+      </footer>
+    </section>
+
+    <!-- ── State 3: ready ────────────────────────────────────────────── -->
+    <section class="state" data-state="ready">
+      <div class="icon-bubble ok">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12l5 5 9-11"/>
+        </svg>
+      </div>
+      <h1 class="title">Téléchargement terminé</h1>
+      <p class="lede">
+        Une fenêtre Finder va s'ouvrir. Glisse <strong>ScanVerse</strong> dans le dossier <strong>Applications</strong> (en remplaçant l'ancienne version), puis relance l'app.
+      </p>
+      <footer class="actions">
+        <button class="btn ghost" id="ready-cancel-btn">Plus tard</button>
+        <button class="btn primary" id="apply-btn">Ouvrir le programme d'installation</button>
+      </footer>
+    </section>
+
+    <!-- ── State 4: error ────────────────────────────────────────────── -->
+    <section class="state" data-state="error">
+      <div class="icon-bubble err">
+        <span style="font-size: 22px; font-weight: 800; line-height: 1;">!</span>
+      </div>
+      <h1 class="title">Erreur de mise à jour</h1>
+      <p class="lede" id="error-msg">Une erreur est survenue.</p>
+      <footer class="actions">
+        <button class="btn ghost" id="error-browser-btn">Ouvrir dans le navigateur</button>
+        <button class="btn primary" id="error-close-btn">Fermer</button>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

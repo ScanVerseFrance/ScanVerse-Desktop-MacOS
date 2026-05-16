@@ -1,0 +1,21 @@
+CONDITIONS D'UTILISATION — SCANVERSE
+
+ScanVerse est une plateforme de démonstration à but non commercial.
+Les œuvres présentées appartiennent à leurs auteurs et éditeurs
+respectifs. Aucune transaction financière réelle n'est effectuée.
+
+En installant cette application, vous acceptez :
+
+  • L'usage strictement personnel et privé du logiciel.
+  • L'utilisation de Discord Rich Presence (désactivable à tout moment
+    depuis Paramètres → Confidentialité → Activité Discord).
+  • La connexion sortante vers https://www.scanverse.online
+    pour charger l'interface, et vers Discord pour le statut.
+
+Aucune donnée personnelle n'est collectée par l'application desktop
+en dehors de votre identifiant Discord (lorsque la fonctionnalité
+Rich Presence est activée).
+
+Pour toute question : https://discord.gg/scanverse
+
+© 2026 ScanVerse — Tous droits réservés.

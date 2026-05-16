@@ -1,0 +1,191 @@
+/*
+ * ScanVerse update modal — same design tokens as the installer so it
+ * feels like a continuation of the brand, not a foreign popup.
+ */
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface-2: #18181f;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.18);
+  --text: #f0f0f5;
+  --text-dim: #9090a8;
+  --text-faint: #5a5a72;
+  --accent: #a855f7;
+  --accent-2: #f59e0b;
+  --accent-soft: rgba(168, 85, 247, 0.16);
+  --danger: #ef4444;
+  --success: #22c55e;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', system-ui, -apple-system, Segoe UI, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.005em;
+  user-select: none;
+  overflow: hidden;
+}
+
+button { font-family: inherit; font-size: inherit; cursor: pointer; }
+
+/* ── Titlebar ──────────────────────────────────────────────────────── */
+.titlebar {
+  -webkit-app-region: drag;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 0 14px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #15151c 0%, #0e0e15 100%);
+}
+.titlebar-brand {
+  display: flex; align-items: baseline; gap: 8px;
+  font-weight: 800; letter-spacing: -0.5px; font-size: 13px;
+}
+.titlebar-brand .accent { color: var(--accent); }
+.titlebar-sub {
+  color: var(--text-dim); font-weight: 600; font-size: 11px; letter-spacing: 0;
+}
+.tb-close {
+  -webkit-app-region: no-drag;
+  width: 32px; height: 26px;
+  background: transparent; border: none; color: var(--text-dim);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  transition: background 0.12s, color 0.12s;
+}
+.tb-close:hover { background: var(--danger); color: #fff; }
+
+/* ── Content / state stack ─────────────────────────────────────────── */
+.content {
+  position: relative;
+  height: calc(100% - 32px);
+  overflow: hidden;
+}
+.state {
+  position: absolute;
+  inset: 0;
+  padding: 24px 28px 22px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 200ms ease, transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.state.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+/* ── Icon bubble (states 1, 3, 4) ──────────────────────────────────── */
+.icon-bubble {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: 0 0 30px rgba(168,85,247,0.35);
+}
+.icon-bubble.ok {
+  background: rgba(34,197,94,0.16);
+  color: var(--success);
+  box-shadow: 0 0 30px rgba(34,197,94,0.35);
+}
+.icon-bubble.err {
+  background: rgba(239,68,68,0.16);
+  color: var(--danger);
+  box-shadow: 0 0 30px rgba(239,68,68,0.35);
+}
+
+/* ── Typography ────────────────────────────────────────────────────── */
+.title {
+  font-size: 20px; font-weight: 800; letter-spacing: -0.4px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.lede {
+  color: var(--text-dim);
+  font-size: 13.5px;
+  line-height: 1.55;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.lede strong { color: var(--text); }
+.muted { color: var(--text-dim); }
+.muted.small { font-size: 12px; text-align: center; margin-bottom: 4px; }
+
+/* ── Progress bar (state 2) ────────────────────────────────────────── */
+.progress-shell {
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 14px 0 6px;
+  border: 1px solid var(--border);
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+  border-radius: 4px;
+  transition: width 0.18s ease;
+  box-shadow: 0 0 12px rgba(168,85,247,0.55);
+}
+.progress-detail {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────── */
+.actions {
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.btn {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 9px;
+  font-weight: 700;
+  font-size: 13px;
+  border: none;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  transition: transform 0.08s ease, background 0.15s, box-shadow 0.15s;
+}
+.btn:active { transform: scale(0.97); }
+.btn.primary {
+  background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 100%);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(168,85,247,0.32), inset 0 1px 0 rgba(255,255,255,0.18);
+}
+.btn.primary:hover {
+  box-shadow: 0 0 22px rgba(168,85,247,0.5), inset 0 1px 0 rgba(255,255,255,0.22);
+}
+.btn.primary:disabled {
+  opacity: 0.5; cursor: not-allowed; box-shadow: none;
+}
+.btn.ghost {
+  background: var(--surface);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+.btn.ghost:hover {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border-strong);
+}

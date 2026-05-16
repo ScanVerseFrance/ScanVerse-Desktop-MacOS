@@ -1,0 +1,28 @@
+node_modules/
+dist/
+out/
+
+# Build / packaging artefacts
+*.dmg
+*.zip
+*.pkg
+*.app
+.DS_Store
+build/icon.icns
+build/icon.iconset/
+
+# Editor / OS noise
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+
+# Local env overrides
+.env
+.env.local
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

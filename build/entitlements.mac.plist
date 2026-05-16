@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!--
+    Entitlements for an unsigned distribution. With identity:null in
+    package.json we never run codesign with hardened-runtime, but
+    electron-builder still wants an entitlements file to copy into the
+    bundle so the Info.plist references stay coherent across builds.
+
+    If/when we move to a paid Apple Developer ID, flip hardenedRuntime to
+    true in package.json — these flags are what Apple's notary service
+    requires to allow JIT (Chromium V8) + dyld plugin loading inside a
+    hardened runtime.
+  -->
+  <key>com.apple.security.cs.allow-jit</key>
+  <true/>
+  <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+  <true/>
+  <key>com.apple.security.cs.disable-library-validation</key>
+  <true/>
+
+  <!--
+    Network client — needed for the ScanVerse site, the GitHub releases
+    update check, Discord IPC, and Google Fonts. App Sandbox is OFF in
+    this build (we don't ship to the App Store), but these keys are kept
+    so the entitlements still pass notarization later.
+  -->
+  <key>com.apple.security.network.client</key>
+  <true/>
+</dict>
+</plist>
