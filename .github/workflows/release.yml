@@ -59,9 +59,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ScanVerse-macOS-${{ github.ref_name }}
-          path: |
-            dist/*.dmg
-            dist/*.dmg.blockmap
+          path: dist/*.dmg
           if-no-files-found: error
           retention-days: 14
 
@@ -74,6 +72,4 @@ jobs:
           # tag first, write notes in the Release UI while CI builds).
           fail_on_unmatched_files: true
           generate_release_notes: true
-          files: |
-            dist/*.dmg
-            dist/*.dmg.blockmap
+          files: dist/*.dmg
