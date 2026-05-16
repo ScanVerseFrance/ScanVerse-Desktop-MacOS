@@ -79,6 +79,20 @@ function injectTitleBar() {
   style.textContent = `
     body { padding-top: ${TITLE_BAR_HEIGHT}px !important; }
 
+    /*
+     * Compensate Tailwind's min-h-screen / h-screen for our injected
+     * title bar. The site uses these classes on full-page layouts
+     * (login splash, settings shell, etc.) which translate to
+     * \`min-height: 100vh\` — but with our 32 px padding-top on body,
+     * a 100vh element extends past the visible viewport by 32 px and
+     * its flex-centered content sits visibly off-center (kazu noticed
+     * the login headline anchored to the lower third of the panel on
+     * macOS). Subtracting the title bar from the screen height puts
+     * the centerline back where the user expects.
+     */
+    .min-h-screen { min-height: calc(100vh - ${TITLE_BAR_HEIGHT}px) !important; }
+    .h-screen     { height:     calc(100vh - ${TITLE_BAR_HEIGHT}px) !important; }
+
     #sv-titlebar {
       position: fixed;
       top: 0; left: 0; right: 0;
