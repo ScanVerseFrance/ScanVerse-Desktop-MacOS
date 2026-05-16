@@ -45,10 +45,22 @@ npm run build:mac:x64      # Intel only
 npm run build:mac:dir      # unpacked .app for quick local testing
 ```
 
-Artefacts land in `dist/`. The build is **unsigned** — users will see
-Gatekeeper warn them the first time they open the app and need to either:
-1. Right-click the app → "Open" → confirm the dialog, **or**
-2. Run `xattr -dr com.apple.quarantine /Applications/ScanVerse.app` once.
+Artefacts land in `dist/`. The build is **ad-hoc signed** (no Apple
+Developer ID, but a self-generated signature so Apple Silicon Macs will
+actually run it — M1/M2/M3/M4/M5 refuse to launch entirely unsigned
+binaries with a fatal "app is damaged" message).
+
+Users still need to bypass Gatekeeper on first launch because the build
+isn't notarized:
+
+```bash
+# Strip the macOS quarantine attribute that Safari/Chrome adds when
+# downloading any DMG. Without this, the app refuses to launch even
+# once it has a signature.
+xattr -cr /Applications/ScanVerse.app
+```
+
+After this, the app opens normally and subsequent launches just work.
 
 To enable Developer ID signing + notarization later, flip
 `mac.hardenedRuntime` to `true` in `package.json`, set `mac.identity` to

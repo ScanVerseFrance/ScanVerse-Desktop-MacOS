@@ -38,10 +38,16 @@ jobs:
         run: npm install --no-audit --no-fund
 
       - name: Build DMGs (arm64 + x64)
-        # CSC_IDENTITY_AUTO_DISCOVERY=false belt-and-braces tells
-        # electron-builder not to look for a Developer ID certificate in
-        # the runner's keychain. Combined with mac.identity:null in
-        # package.json, the build is fully unsigned.
+        # CSC_IDENTITY_AUTO_DISCOVERY=false tells electron-builder not to
+        # look for a Developer ID certificate in the runner's keychain.
+        # Combined with mac.identity:"-" in package.json, the build is
+        # ad-hoc signed — Apple Silicon (M1+) refuses to launch *anything*
+        # without a code signature, even a self-generated one. The
+        # ad-hoc signature gets us past that gate; users still see the
+        # untrusted-developer prompt on first launch (no notarization),
+        # but it's the soft "Open anyway in Privacy & Security" flow
+        # rather than the fatal "app is damaged" error v0.2.14 hit on
+        # Apple Silicon.
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
           # GH_TOKEN unset on purpose — we don't want electron-builder's
@@ -49,6 +55,21 @@ jobs:
           # handles the upload so we control exactly which files land on
           # the Release.
         run: npm run build:mac
+
+      - name: Verify ad-hoc signature on built .app
+        # If electron-builder ever silently regressed to unsigned (it has
+        # in past releases when an identity flag changed name), `codesign
+        # --verify` would fail here and the workflow would surface the
+        # issue *before* shipping a broken DMG to users.
+        run: |
+          set -e
+          for app in dist/mac*/ScanVerse.app; do
+            if [ -d "$app" ]; then
+              echo "Verifying: $app"
+              codesign --verify --deep --strict --verbose=2 "$app"
+              codesign -dvv "$app" 2>&1 | head -10
+            fi
+          done
 
       - name: List build artefacts
         # Quick sanity dump in the logs so we can spot if a target

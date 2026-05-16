@@ -1,6 +1,6 @@
 {
   "name": "scanverse-desktop-macos",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "Native macOS desktop wrapper for ScanVerse with Discord Rich Presence",
   "main": "src/main.js",
   "private": true,
@@ -56,7 +56,7 @@
       "minimumSystemVersion": "10.15.0",
       "hardenedRuntime": false,
       "gatekeeperAssess": false,
-      "identity": null,
+      "identity": "-",
       "entitlements": "build/entitlements.mac.plist",
       "entitlementsInherit": "build/entitlements.mac.plist",
       "extendInfo": {
